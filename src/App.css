@@ -4,8 +4,9 @@
   display: grid;
   grid-template-areas:
   "h h h" 
-  "m m m";
+  "m m m"
+  "f f f";
 
-  grid-template-rows: 40px 1000px;  
+  grid-template-rows: 40px 800px 60px;  
 }
 
