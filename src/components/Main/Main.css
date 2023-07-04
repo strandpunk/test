@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.BoxWrapper {
+.main__boxWrapper {
 
     display: flex;
     flex-direction: row;
@@ -13,7 +13,7 @@
     margin-top: 20px;
 }
 
-.Box {
+.main__box {
     height: 600px;
     width: 600px;
 

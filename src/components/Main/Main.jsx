@@ -36,8 +36,8 @@ function Main() {
             </PopUp>
             <div className="main">
                 <h2>Hanna</h2>
-                <div className='BoxWrapper'>
-                    <div className='Box'>
+                <div className='main__boxWrapper'>
+                    <div className='main__box'>
                         <h2>Characters</h2>
                         <ul>
                             <li>Hanna Heller</li>
@@ -61,7 +61,7 @@ function Main() {
                             <li>Knepfler</li>
                         </ul>
                     </div>
-                    <div className='Box'>
+                    <div className='main__box'>
                         <div className='Wrapper1'>
                             <div className='ImgBox' id='Border'></div>
                             <div className='ImgBox'>

@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import './Header.css';
 
+var user = 'Grankov'
+
 function Header() {
-
-  const [user, setUser] = useState('Default');
-
   return (
     <div className="Header">
       <div>
