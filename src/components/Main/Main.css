@@ -73,3 +73,15 @@
     object-fit: cover;
     object-position: 0 1;
 }
+
+.btn-wrapper{
+    padding-top: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    width: 150px;
+    height: 40px;
+}

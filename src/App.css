@@ -7,6 +7,6 @@
   "m m m"
   "f f f";
 
-  grid-template-rows: 40px 800px 60px;  
+  grid-template-rows: 40px 100vh 60px;  
 }
 

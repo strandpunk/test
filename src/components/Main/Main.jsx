@@ -35,10 +35,14 @@ function Main() {
                     <div className='Wrapper1'>
                         <div className='ImgBox' id='Border'></div>
                         <div className='ImgBox'>
-                            <div id='Box2Text'>Hanna Heller is a fifteen-year-old girl who lives with her father, Erik, in rural northern Finland. 
-                            Since the age of two, Hanna has been trained by him, an ex-CIA operative from Germany, to be a skilled assassin. 
-                            He teaches her hand-to-hand combat and drills her in target shooting. 
-                            Erik knows a secret that cannot become public and Marissa Wiegler, a senior CIA officer, seeks to eliminate him.</div>
+                            <div id='Box2Text'>Hanna Heller is a fifteen-year-old girl who lives with her father, Erik, in rural northern Finland.
+                                Since the age of two, Hanna has been trained by him, an ex-CIA operative from Germany, to be a skilled assassin.
+                                He teaches her hand-to-hand combat and drills her in target shooting.
+                                Erik knows a secret that cannot become public and Marissa Wiegler, a senior CIA officer, seeks to eliminate him. <br></br>
+                                <div className='btn-wrapper'>
+                                    <button className='btn' type='button'>Learn more</button>
+                                </div>
+                            </div>
                             <div id='Box2Img'><img id='Marissa' src="/MarissaWiegler2011.webp" alt="Marissa" /></div>
                         </div>
                     </div>
