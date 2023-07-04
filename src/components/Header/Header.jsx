@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import './Header.css';
 
-let user = "Grankov";
-
 function Header() {
+
+  const [user, setUser] = useState('Default');
+
   return (
     <div className="Header">
       <div>
@@ -12,7 +14,7 @@ function Header() {
         <p>User: {user}</p>
       </div>
       <div>
-        <button className='header__button'>Exit</button>
+        <button className='header__button' onClick={() => alert('Exit')}>Exit</button>
       </div>
     </div>
   );
