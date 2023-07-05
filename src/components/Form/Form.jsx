@@ -4,8 +4,8 @@ import './Form.css'
 
 function Form() {
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordDirty, setPasswordDirty] = useState(false);
     const [emailError, setEmailError] = useState('Поле почты не может быть пустым')
@@ -19,7 +19,7 @@ function Form() {
             setFormValid(true)
         }
     }, [emailError, passwordError])
- 
+
     const emailHandler = (e) => {
         setEmail(e.target.value)
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
