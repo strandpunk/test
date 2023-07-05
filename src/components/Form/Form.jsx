@@ -10,7 +10,6 @@ function Form() {
     const [passwordDirty, setPasswordDirty] = useState(false);
     const [emailError, setEmailError] = useState('Поле почты не может быть пустым')
     const [passwordError, setPasswordError] = useState('Поле пароля не может быть пустым')
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [formValid, setFormValid] = useState(false)
 
     useEffect(() => {
@@ -23,7 +22,7 @@ function Form() {
 
     const emailHandler = (e) => {
         setEmail(e.target.value)
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(String(e.target.value).toLowerCase())) {
             setEmailError('Некорректная почта')
             if (!e.target.value) {
@@ -74,6 +73,8 @@ function Form() {
                 break
             case 'password':
                 setPasswordDirty(true)
+                break
+            default:
                 break
         }
     }
