@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Form.css'
+import axios from "axios"
 
 function Form() {
 
@@ -64,19 +65,37 @@ function Form() {
         setConfirmPassword(e.target.value)
 
         if (e.target.value.length === 0) {
-            setConfirmPasswordError('Password is empty');
+            setConfirmPasswordError('Это поле не может быть пустым');
         } else (
             setConfirmPasswordError('')
         )
     }
 
     const Pass = (e) => {
-        if (confirmPassword !== password) {
-            setConfirmPasswordError('Пароли не совпали')
+        if (confirmPassword.length === 0) {
+            setConfirmPasswordError('Это поле не может быть пустым')
         } else {
-            setConfirmPasswordError('')
+            if (confirmPassword !== password) {
+                setConfirmPasswordError('Пароли не совпали')
+            } else {
+                setConfirmPasswordError('')
+            }
         }
     }
+
+
+    //---POST---
+    const axiosPostData = async() => {
+        const postData = {
+            email: email,
+            password: password
+        }
+
+        await axios.post('http://localhost:4000/data', postData)
+        .then()
+    }
+    //----------
+
 
     return (
         <div className='form__wrapper'>
@@ -92,7 +111,7 @@ function Form() {
                     <label>Confirm password</label>
                     <input onChange={e => confirmPasswordHandler(e)} value={confirmPassword} name='confirmPassword' type='password' placeholder='Confirm your password...'></input>
                     <div style={{ color: 'red', marginBottom: '40px' }}>{confirmPasswordError}</div>
-                    <button onClick={e => Pass(e)} className='registerbtn' type='button'>Registration</button>
+                    <button onClick={e => { Pass(e); axiosPostData() }} className='registerbtn' type='button'>Registration</button>
                 </form>
             </div>
         </div>
