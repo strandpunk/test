@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import './Form.css'
 
@@ -6,19 +5,11 @@ function Form() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [emailDirty, setEmailDirty] = useState(false);
-    const [passwordDirty, setPasswordDirty] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('')
+
     const [emailError, setEmailError] = useState('Поле почты не может быть пустым')
     const [passwordError, setPasswordError] = useState('Поле пароля не может быть пустым')
-    const [formValid, setFormValid] = useState(false)
-
-    useEffect(() => {
-        if (emailError || passwordError) {
-            setFormValid(false)
-        } else {
-            setFormValid(true)
-        }
-    }, [emailError, passwordError])
+    const [confirmPasswordError, setConfirmPasswordError] = useState('Это поле не может быть пустым')
 
     const emailHandler = (e) => {
         setEmail(e.target.value)
@@ -34,7 +25,9 @@ function Form() {
     }
 
     const passwordHandler = (e) => {
+
         setPassword(e.target.value)
+
         const uppercaseRegExp = /(?=.*?[A-Z])/;
         const lowercaseRegExp = /(?=.*?[a-z])/;
         const digitsRegExp = /(?=.*?[0-9])/;
@@ -66,32 +59,40 @@ function Form() {
         }
     }
 
-    const blurHandler = (e) => {
-        switch (e.target.name) {
-            case 'email':
-                setEmailDirty(true)
-                break
-            case 'password':
-                setPasswordDirty(true)
-                break
-            default:
-                break
+    const confirmPasswordHandler = (e) => {
+
+        setConfirmPassword(e.target.value)
+
+        if (e.target.value.length === 0) {
+            setConfirmPasswordError('Password is empty');
+        } else (
+            setConfirmPasswordError('')
+        )
+    }
+
+    const Pass = (e) => {
+        if (confirmPassword !== password) {
+            setConfirmPasswordError('Пароли не совпали')
+        } else {
+            setConfirmPasswordError('')
         }
     }
+
     return (
         <div className='form__wrapper'>
             <div>
                 <form>
                     <h1>Registration</h1>
-                    {(emailDirty && emailError) && <div style={{ color: 'red' }}>{emailError}</div>}
                     <label>Email</label>
-                    <input onChange={e => emailHandler(e)} value={email} onBlur={e => blurHandler(e)} name='email' type='text' placeholder='Enter your email....' />
-                    {(passwordDirty && passwordError) && <div style={{ color: 'red' }}>{passwordError}</div>}
+                    <input onChange={e => emailHandler(e)} value={email} name='email' type='text' placeholder='Enter your email....' />
+                    <div style={{ color: 'red', marginBottom: '40px' }}>{emailError}</div>
                     <label>Password</label>
-                    <input onChange={e => passwordHandler(e)} value={password} onBlur={e => blurHandler(e)} name='password' type='password' placeholder='Enter your password....' />
+                    <input onChange={e => passwordHandler(e)} value={password} name='password' type='password' placeholder='Enter your password....' />
+                    <div style={{ color: 'red', marginBottom: '40px' }}>{passwordError}</div>
                     <label>Confirm password</label>
-                    <input type='password' placeholder='Confirm your password...'></input>
-                    <button className='registerbtn' disabled={!formValid} type='submit'>Registration</button>
+                    <input onChange={e => confirmPasswordHandler(e)} value={confirmPassword} name='confirmPassword' type='password' placeholder='Confirm your password...'></input>
+                    <div style={{ color: 'red', marginBottom: '40px' }}>{confirmPasswordError}</div>
+                    <button onClick={e => Pass(e)} className='registerbtn' type='button'>Registration</button>
                 </form>
             </div>
         </div>
