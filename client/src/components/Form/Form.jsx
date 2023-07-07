@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './Form.css'
-import axios from "axios"
 
 function Form() {
 
@@ -72,30 +71,21 @@ function Form() {
     }
 
 
-    // const axiosPostData = async () => {
-    //     const postData = {
-    //         email: email,
-    //         password: password
-    //     }
-
-    //     await axios.post('http://localhost:4000/data', postData)
-    //         .then()
+//-----------------------------------------------------------------
+    // const postData = async (url = '', data = {}) => {
+    //     // Формируем запрос
+    //     const response = await fetch(url, {
+    //         // Метод, если не указывать, будет использоваться GET
+    //         method: 'POST',
+    //         // Заголовок запроса
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         // Данные
+    //         body: JSON.stringify(data)
+    //     });
+    //     return response.json();
     // }
-
-    const postData = async (url = '', data = {}) => {
-        // Формируем запрос
-        const response = await fetch(url, {
-            // Метод, если не указывать, будет использоваться GET
-            method: 'POST',
-            // Заголовок запроса
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // Данные
-            body: JSON.stringify(data)
-        });
-        return response.json();
-    }
 
 
     const Pass = (e) => {
@@ -107,15 +97,15 @@ function Form() {
             } else {
                 setConfirmPasswordError('')
 
-                postData('http://localhost:4000/data',
-                    {
-                        email: email,
-                        password: password
-                    })
+                // postData('http://localhost:4000/data',
+                //     {
+                //         email: email,
+                //         password: password
+                //     })
 
-                    .then((data) => {
-                        console.log(data);
-                    });
+                //     .then((data) => {
+                //         console.log(data);
+                //     });
             }
         }
     }
