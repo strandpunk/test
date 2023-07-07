@@ -71,17 +71,32 @@ function Form() {
         )
     }
 
-    //---POST-------------
-    const axiosPostData = async () => {
-        const postData = {
-            email: email,
-            password: password
-        }
 
-        await axios.post('http://localhost:4000/data', postData)
-            .then()
+    // const axiosPostData = async () => {
+    //     const postData = {
+    //         email: email,
+    //         password: password
+    //     }
+
+    //     await axios.post('http://localhost:4000/data', postData)
+    //         .then()
+    // }
+
+    const postData = async (url = '', data = {}) => {
+        // Формируем запрос
+        const response = await fetch(url, {
+            // Метод, если не указывать, будет использоваться GET
+            method: 'POST',
+            // Заголовок запроса
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Данные
+            body: JSON.stringify(data)
+        });
+        return response.json();
     }
-    //--------------------
+
 
     const Pass = (e) => {
         if (confirmPassword.length === 0) {
@@ -92,7 +107,15 @@ function Form() {
             } else {
                 setConfirmPasswordError('')
 
-                axiosPostData()
+                postData('http://localhost:4000/data',
+                    {
+                        email: email,
+                        password: password
+                    })
+
+                    .then((data) => {
+                        console.log(data);
+                    });
             }
         }
     }
