@@ -71,21 +71,22 @@ function Form() {
     }
 
 
-//-----------------------------------------------------------------
-    // const postData = async (url = '', data = {}) => {
-    //     // Формируем запрос
-    //     const response = await fetch(url, {
-    //         // Метод, если не указывать, будет использоваться GET
-    //         method: 'POST',
-    //         // Заголовок запроса
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         // Данные
-    //         body: JSON.stringify(data)
-    //     });
-    //     return response.json();
-    // }
+    //-----------------------------------------------------------------
+    const postData = async (url = '', data = {}) => {
+        // Формируем запрос
+        const response = await fetch(url, {
+            // Метод, если не указывать, будет использоваться GET
+            method: 'POST',
+            // Заголовок запроса
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '<origin>',
+            },
+            // Данные
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    }
 
 
     const Pass = (e) => {
@@ -97,18 +98,31 @@ function Form() {
             } else {
                 setConfirmPasswordError('')
 
-                // postData('http://localhost:4000/data',
-                //     {
-                //         email: email,
-                //         password: password
-                //     })
+                postData('http://localhost:4000',
+                    {
+                        email: email,
+                        password: password
+                    })
 
-                //     .then((data) => {
-                //         console.log(data);
-                //     });
+                    .then((data) => {
+                        console.log(data);
+                    });
             }
         }
     }
+
+    const Check = (e) => {
+        postData('http://localhost:4000/post',
+            {
+                email: 'email',
+                password: 'password'
+            })
+
+            .then(() => {
+                console.log('1');
+            });
+    }
+
 
 
 
@@ -129,6 +143,7 @@ function Form() {
                     <input onChange={e => confirmPasswordHandler(e)} value={confirmPassword} name='confirmPassword' type='password' placeholder='Confirm your password...'></input>
                     <div style={{ color: 'red', marginBottom: '40px' }}>{confirmPasswordError}</div>
                     <button onClick={e => { Pass(e) }} className='registerbtn' type='button'>Registration</button>
+                    <button onClick={e => { Check(e) }} className='' type='button'>Check</button>
                 </form>
             </div>
         </div>
