@@ -2,10 +2,10 @@ const asyncMiddleware = require('../../middleware/asyncMiddleware')
 const User = require('./users.model')
 
 const getUsers = asyncMiddleware(async (_req, res) => {
-    const user = await User.find()
-    res.status(200).send(users)
+    // const users = await User.find()
+    // res.status(200).send(users)
 
-    // throw new Error('Error Test')
+    throw new Error('Error Test')
 })
 
 const addUsers = asyncMiddleware(async (req, res) => {
