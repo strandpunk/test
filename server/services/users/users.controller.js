@@ -1,5 +1,6 @@
 const asyncMiddleware = require('../../middleware/asyncMiddleware')
-const hashPassword = require('../../utils/hashPassword')
+const passwordManager = require('../../utils/passwordManager')
+const hashPassword = require('../../utils/passwordManager')
 const User = require('./users.model')
 
 const getUsers = asyncMiddleware(async (_req, res) => {
@@ -16,27 +17,38 @@ const addUsers = asyncMiddleware(async (req, res) => {
     if (!name || !email || !password) throw new Error("Please fill all fields")
 
     //validate user
-    const user_exists = await User.findOne({ email })
+    const existing_user = await User.findOne({ email })
 
-    if (user_exists) throw new Error("User already exists")
+    // if (existing_user) throw new Error("User already exists")
+    if (!existing_user) throw new Error("Invalid email")
 
     //encrypt
-    const hashed_password = await hashPassword(password)
+    // const hashed_password = await hashPassword(password)
 
-    const new_user = await User.create({
-        name,
-        email,
-        password: hashed_password
-    })
+    // const new_user = await User.create({
+    //     name,
+    //     email,
+    //     password: hashed_password
+    // })
 
-    res.status(201).send({
-        _id: new_user._id,
-        name: new_user.name,
-        email: new_user.email,
-        createdAt: new_user.createdAt,
-        updatedAt: new_user.updatedAt
+    // res.status(201).send({
+    //     _id: new_user._id,
+    //     name: new_user.name,
+    //     email: new_user.email,
+    //     createdAt: new_user.createdAt,
+    //     updatedAt: new_user.updatedAt
 
-    })
+    // })
+
+    if (await passwordManager.comparePassword(password, existing_user.password)) {
+        res.status(201).send({
+            _id: existing_user._id,
+            name: existing_user.name,
+            email: existing_user.email,
+            createdAt: existing_user.createdAt,
+            updatedAt: existing_user.updatedAt
+        })
+    } else throw new Error("Invalid password")
 })
 
 const updateUsers = asyncMiddleware(async (_req, res) => {
