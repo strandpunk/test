@@ -1,4 +1,5 @@
 const asyncMiddleware = require('../../middleware/asyncMiddleware')
+const jwt = require('../../utils/jwt')
 const passwordManager = require('../../utils/passwordManager')
 const hashPassword = require('../../utils/passwordManager')
 const User = require('./users.model')
@@ -10,7 +11,7 @@ const getUsers = asyncMiddleware(async (_req, res) => {
     // throw new Error('Error Test')    
 })
 
-const addUsers = asyncMiddleware(async (req, res) => {
+const register = asyncMiddleware(async (req, res) => {
     const { name, email, password } = req.body
 
     //check inputs fields
@@ -35,7 +36,8 @@ const addUsers = asyncMiddleware(async (req, res) => {
         name: new_user.name,
         email: new_user.email,
         createdAt: new_user.createdAt,
-        updatedAt: new_user.updatedAt
+        updatedAt: new_user.updatedAt,
+        token: jwt.generate(new_user._id)
     })
 })
 
@@ -47,13 +49,14 @@ const login = asyncMiddleware(async (req, res) => {
     if (!existing_user) throw new Error("Invalid email")
 
     //compare pwd
-    if (await passordManager.comparePassword(password, existing_user.password)) {
+    if (await passwordManager.comparePassword(password, existing_user.password)) {
         res.status(200).send({
             _id: existing_user._id,
             name: existing_user.name,
             email: existing_user.email,
             createdAt: existing_user.createdAt,
-            updatedAt: existing_user.updatedAt
+            updatedAt: existing_user.updatedAt,
+            token: jwt.generate(existing_user._id)
         })
     } else throw new Error("Invalid password")
 })
@@ -72,7 +75,8 @@ const deleteUsers = asyncMiddleware(async (req, res) => {
 
 module.exports = {
     getUsers,
-    addUsers,
     updateUsers,
-    deleteUsers
+    deleteUsers,
+    login,
+    register
 }

@@ -1,14 +1,19 @@
 const express = require('express')
-const {addUsers, updateUsers, deleteUsers, getUsers} = require('./users.controller')
+const { updateUsers, deleteUsers, getUsers, login, register } = require('./users.controller')
 
 const useRouter = express.Router()
 
 useRouter.route('/api/users')
-.get(getUsers)
-.post(addUsers)
+    .get(getUsers)
 
 useRouter.route('/api/users/:id')
-.put(updateUsers)
-.delete(deleteUsers)
+    .put(updateUsers)
+    .delete(deleteUsers)
+
+useRouter.route('/api/users/login')
+    .post(login)
+
+useRouter.route('/api/users/register')
+    .post(register)
 
 module.exports = useRouter
