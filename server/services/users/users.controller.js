@@ -19,26 +19,8 @@ const addUsers = asyncMiddleware(async (req, res) => {
     //validate user
     const existing_user = await User.findOne({ email })
 
-    // if (existing_user) throw new Error("User already exists")
     if (!existing_user) throw new Error("Invalid email")
 
-    //encrypt
-    // const hashed_password = await hashPassword(password)
-
-    // const new_user = await User.create({
-    //     name,
-    //     email,
-    //     password: hashed_password
-    // })
-
-    // res.status(201).send({
-    //     _id: new_user._id,
-    //     name: new_user.name,
-    //     email: new_user.email,
-    //     createdAt: new_user.createdAt,
-    //     updatedAt: new_user.updatedAt
-
-    // })
 
     if (await passwordManager.comparePassword(password, existing_user.password)) {
         res.status(201).send({
