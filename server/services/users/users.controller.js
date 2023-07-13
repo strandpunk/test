@@ -17,13 +17,38 @@ const addUsers = asyncMiddleware(async (req, res) => {
     if (!name || !email || !password) throw new Error("Please fill all fields")
 
     //validate user
-    const existing_user = await User.findOne({ email })
+    const user_exists = await User.findOne({ email })
 
+    if (user_exists) throw new Error("User already exists")
+
+    //encrypt
+    const hashed_password = await passwordManager.hashPassword(password)
+
+    const new_user = await User.create({
+        name,
+        email,
+        password: hashed_password
+    })
+
+    res.status(201).send({
+        _id: new_user._id,
+        name: new_user.name,
+        email: new_user.email,
+        createdAt: new_user.createdAt,
+        updatedAt: new_user.updatedAt
+    })
+})
+
+const login = asyncMiddleware(async (req, res) => {
+    const { email, password } = req.body
+
+    //validate user
+    const existing_user = await User.findOne({ email })
     if (!existing_user) throw new Error("Invalid email")
 
-
-    if (await passwordManager.comparePassword(password, existing_user.password)) {
-        res.status(201).send({
+    //compare pwd
+    if (await passordManager.comparePassword(password, existing_user.password)) {
+        res.status(200).send({
             _id: existing_user._id,
             name: existing_user.name,
             email: existing_user.email,
