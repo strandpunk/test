@@ -17,7 +17,7 @@ app.use(cors())
 PORT = process.env.PORT || 4000
 
 db()
-app.use('/', useRouter)
+app.use('/api/users/', useRouter)
 app.use(errorMiddleware)
 
 app.listen(PORT, () => console.log('SERVER IS RUNNING ON PORT: ' + PORT))

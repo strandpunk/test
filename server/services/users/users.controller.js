@@ -73,10 +73,23 @@ const deleteUsers = asyncMiddleware(async (req, res) => {
     res.status(204).end()
 })
 
+const getUserInfo = asyncMiddleware(async (req, res) => {
+    const user = req.user
+    const id = req.params.id
+
+    if (user?._id.toString() !== id) { //опциональная цепочка ?.
+        res.status(401)
+        throw new Error("Now authorized, invalid user")
+    }
+    const info = await User.findById(user._id).select('-password')
+    res.status(200).send(info)
+})
+
 module.exports = {
     getUsers,
     updateUsers,
     deleteUsers,
     login,
-    register
+    register,
+    getUserInfo
 }
