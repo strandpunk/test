@@ -4,11 +4,15 @@ const dotenv = require('dotenv')
 const useRouter = require('./services/users/users.routes')
 const db = require('./config/DB')
 const errorMiddleware = require('./middleware/errorMiddleware')
+// const crypto = require('crypto')
+
+dotenv.config()
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-dotenv.config()
+
+// console.log(crypto.randomUUID())
 
 PORT = process.env.PORT || 4000
 
