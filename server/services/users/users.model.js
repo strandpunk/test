@@ -4,7 +4,18 @@ const UserSchema = mongoose.Schema({
     name:{
         require: true,
         type: String
+    },
+    email:{
+        require: true,
+        type: String,
+        unique: true
+    },
+    password:{
+        require: true,
+        type: String
     }
+}, {
+    timestaps: true
 })
 
 const User = mongoose.model('User', UserSchema)
