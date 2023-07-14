@@ -71,24 +71,6 @@ function Form() {
     }
 
 
-    //-----------------------------------------------------------------
-    const postData = async (url = '', data = {}) => {
-        // Формируем запрос
-        const response = await fetch(url, {
-            // Метод, если не указывать, будет использоваться GET
-            method: 'POST',
-            // Заголовок запроса
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '<origin>',
-            },
-            // Данные
-            body: JSON.stringify(data)
-        });
-        return response.json();
-    }
-
-
     const Pass = (e) => {
         if (confirmPassword.length === 0) {
             setConfirmPasswordError('Это поле не может быть пустым')
@@ -97,54 +79,28 @@ function Form() {
                 setConfirmPasswordError('Пароли не совпали')
             } else {
                 setConfirmPasswordError('')
-
-                postData('http://localhost:4000',
-                    {
-                        email: email,
-                        password: password
-                    })
-
-                    .then((data) => {
-                        console.log(data);
-                    });
             }
         }
     }
 
-    const Check = (e) => {
-        postData('http://localhost:4000/post',
-            {
-                email: 'email',
-                password: 'password'
-            })
-
-            .then(() => {
-                console.log('1');
-            });
-    }
-
-
-
-
-
-
     return (
-        <div className='form__wrapper'>
-            <div>
-                <form>
-                    <h1>Registration</h1>
-                    <label>Email</label>
-                    <input onChange={e => emailHandler(e)} value={email} name='email' type='text' placeholder='Enter your email....' />
-                    <div style={{ color: 'red', marginBottom: '40px' }}>{emailError}</div>
-                    <label>Password</label>
-                    <input onChange={e => passwordHandler(e)} value={password} name='password' type='password' placeholder='Enter your password....' />
-                    <div style={{ color: 'red', marginBottom: '40px' }}>{passwordError}</div>
-                    <label>Confirm password</label>
-                    <input onChange={e => confirmPasswordHandler(e)} value={confirmPassword} name='confirmPassword' type='password' placeholder='Confirm your password...'></input>
-                    <div style={{ color: 'red', marginBottom: '40px' }}>{confirmPasswordError}</div>
-                    <button onClick={e => { Pass(e) }} className='registerbtn' type='button'>Registration</button>
-                    <button onClick={e => { Check(e) }} className='' type='button'>Check</button>
-                </form>
+        <div className='form_placer'>
+            <div className='form__wrapper'>
+                <div>
+                    <form>
+                        <h1>Registration</h1>
+                        <label>Email</label>
+                        <input onChange={e => emailHandler(e)} value={email} name='email' type='text' placeholder='Enter your email....' />
+                        <div style={{ color: 'red', marginBottom: '40px' }}>{emailError}</div>
+                        <label>Password</label>
+                        <input onChange={e => passwordHandler(e)} value={password} name='password' type='password' placeholder='Enter your password....' />
+                        <div style={{ color: 'red', marginBottom: '40px' }}>{passwordError}</div>
+                        <label>Confirm password</label>
+                        <input onChange={e => confirmPasswordHandler(e)} value={confirmPassword} name='confirmPassword' type='password' placeholder='Confirm your password...'></input>
+                        <div style={{ color: 'red', marginBottom: '40px' }}>{confirmPasswordError}</div>
+                        <button onClick={e => { Pass(e) }} className='registerbtn' type='button'>Registration</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
