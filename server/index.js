@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const useRouter = require('./services/users/users.routes')
 const db = require('./config/DB')
 const errorMiddleware = require('./middleware/errorMiddleware')
+const DataRouter = require('./services/data/data.routes')
 // const crypto = require('crypto')
 
 dotenv.config()
@@ -18,6 +19,7 @@ PORT = process.env.PORT || 4000
 
 db()
 app.use('/api/users/', useRouter)
+app.use('/api/data/', DataRouter)
 app.use(errorMiddleware)
 
 app.listen(PORT, () => console.log('SERVER IS RUNNING ON PORT: ' + PORT))
