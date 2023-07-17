@@ -2,6 +2,7 @@ import { ChangeEvent, FormEventHandler, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { User } from '../services/authService'
+import React from 'react'
 
 type Props = {}
 
@@ -24,16 +25,19 @@ const SignIn = (props: Props) => {
         try {
             await signin(form)
             navigate('/')
-            window.location.reload()
+            navigate(0)
         } catch (error) {
             console.log("SignIn Error -->", error)
         }
     }
 
     const { email, password } = form
-    return {
-        
-    }
+    return (
+        <form onSubmit={handleSubmit} className="form">
+  
+        </form>
+
+    )
 
 }
 

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {useAuth} from '../contexts/AuthContext'
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const { user, signout } = useAuth()
@@ -9,7 +10,7 @@ const Navbar = () => {
   const handleSignout = () => {
     signout()
     navigate('/signin')
-    wondow.location.reload()
+    window.location.reload()
   }
 
   return (
