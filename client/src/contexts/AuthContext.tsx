@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 type ContextState = {
     user?: User,
-    signup:Function,
-    signin:Function,
-    signout:Function,
+    signup: Function,
+    signin: Function,
+    signout: Function,
 }
 const authContext = createContext<ContextState>({
     signin: () => { },
@@ -35,6 +35,7 @@ const AuthContextProvider = (props: Props) => {
 
     useEffectOnce(() => {
         if (!user) getUserInfo()
+        console.log(user) //-------
     })
 
     const signup = async (user: User) => {

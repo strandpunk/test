@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {useAuth} from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext'
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
 
@@ -15,18 +15,20 @@ const Navbar = () => {
   }
 
   return (
-    <header className='bg-slate-900 h-11 text-white flex flex-wrap justify-between items-center'>
+    <header className='navbar-header'>
       <Link to={'/'}><img id='Logo' src="/1618916.svg" alt="Logo" className="cursor-pointer" /></Link>
       <nav className="flex justify-center items-center gap-5">
         {!user ?
           <>
-            <NavLink className={({ isActive }) => `border-b-[2px] ${isActive ? "border-b-rose-200" : "border-b-transparent"}`} to='/signin'>Sign in</NavLink>
-            <NavLink className={({ isActive }) => `border-b-[2px] ${isActive ? "border-b-rose-200" : "border-b-transparent"}`} to='/signup'>Sign up</NavLink>
+            <div className="navbar-linkWrapper">
+              <NavLink className='navbar-navlink' to='/signin'>Sign in</NavLink>
+              <NavLink className='navbar-navlink' to='/signup'>Sign up</NavLink>
+            </div>
           </>
           :
           <>
-            <div className='text-blue-200'>{user?.name}</div>
-            <div className='text-rose-200 cursor-pointer' onClick={handleSignout}>signout</div>
+            <div className='navbar-user'>Hello{user?.name}</div>
+            <div className='navbar-signout' onClick={handleSignout}>signout</div>
           </>
         }
       </nav >

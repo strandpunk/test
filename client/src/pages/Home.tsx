@@ -2,6 +2,7 @@ import React, { FormEventHandler, useState } from "react"
 import DataItem from "../components/dataItem"
 import { useData } from '../contexts/DataContext'
 import { Data } from "../services/dataService"
+import './Home.css'
 
 
 type Props = {}
@@ -29,12 +30,12 @@ const Home = (props: Props) => {
     }
 
     return (
-        <article>
-            <form onSubmit={handleSubmit}></form>
+        <main className="home-main">
             <section>
                 {datas?.map(d => <DataItem {...d} key={d._id} onClick={handleDataItemClick(d)} />)}
             </section>
-        </article>
+            <div>Home</div>
+        </main>
     )
 }
 

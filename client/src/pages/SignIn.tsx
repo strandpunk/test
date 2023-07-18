@@ -31,38 +31,28 @@ const SignIn = (props: Props) => {
             console.log("SignIn Error -->", error)
         }
     }
-    
-    const {email, password} = form
+
+    const { email, password } = form
     return (
-        <div className='form-wrapper'>
-            <form onSubmit={handleSubmit} className=" my-12 h-2/5 flex w-3/12 flex-col gap-8 bg-slate-300">
-                {/* <AppInput/> */}
-                <input
-                    required
-                    value={email}
-                    placeholder='Email'
-                    name='email'
-                    title='Email'
-                    type={'email'}
-                    onChange={handleFormChange}
-                />
+        <div className='form_placer'>
+            <div className='form-wrapper'>
+                <form onSubmit={handleSubmit} className="form">
+                    {/* <AppInput/> */}
 
-                {/* <AppInput/> */}
-                <input
-                    required
-                    value={password}
-                    placeholder='Password'
-                    name='password'
-                    title='password'
-                    type={'password'}
-                    onChange={handleFormChange}
-                />
-                
-                {/* <AppButton/> */}
-                <button/>
-            </form>
+                    {/* <AppInput/> */}
+
+                    <h1 style={{ textAlign: 'center' }}>Enter</h1>
+                    <label>Email</label>
+                    <input onChange={handleFormChange} value={email} name='email' type='text' placeholder='Enter your email....' />
+
+                    {/* <AppButton/> */}
+
+                    <label>Password</label>
+                    <input onChange={handleFormChange} value={password} name='password' type='password' placeholder='Enter your password...'></input>
+                    <button className='registerbtn' type='submit'>ENTER</button>
+                </form>
+            </div>
         </div>
-
     )
 
 }
