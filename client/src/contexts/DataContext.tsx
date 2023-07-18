@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 import dataService, { Data } from '../services/dataService';
 
 type ContextState = {
-    datas?: Data[],
+    datas?: Data[] | undefined,
     addData: Function,
     updateData: Function,
     deleteData: Function,

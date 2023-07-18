@@ -88,7 +88,7 @@ function Form() {
             <div className='form__wrapper'>
                 <div>
                     <form>
-                        <h1>Registration</h1>
+                        <h1 style={{textAlign:'center'}}>Registration</h1>
                         <label>Email</label>
                         <input onChange={e => emailHandler(e)} value={email} name='email' type='text' placeholder='Enter your email....' />
                         <div style={{ color: 'red', marginBottom: '40px' }}>{emailError}</div>

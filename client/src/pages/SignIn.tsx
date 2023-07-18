@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { User } from '../services/authService'
 import React from 'react'
+import './SignIn.css'
 
 type Props = {}
 
@@ -30,12 +31,37 @@ const SignIn = (props: Props) => {
             console.log("SignIn Error -->", error)
         }
     }
-
-    const { email, password } = form
+    
+    const {email, password} = form
     return (
-        <form onSubmit={handleSubmit} className="form">
-  
-        </form>
+        <div className='form-wrapper'>
+            <form onSubmit={handleSubmit} className=" my-12 h-2/5 flex w-3/12 flex-col gap-8 bg-slate-300">
+                {/* <AppInput/> */}
+                <input
+                    required
+                    value={email}
+                    placeholder='Email'
+                    name='email'
+                    title='Email'
+                    type={'email'}
+                    onChange={handleFormChange}
+                />
+
+                {/* <AppInput/> */}
+                <input
+                    required
+                    value={password}
+                    placeholder='Password'
+                    name='password'
+                    title='password'
+                    type={'password'}
+                    onChange={handleFormChange}
+                />
+                
+                {/* <AppButton/> */}
+                <button/>
+            </form>
+        </div>
 
     )
 
