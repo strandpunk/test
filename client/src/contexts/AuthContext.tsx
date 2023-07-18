@@ -35,13 +35,13 @@ const AuthContextProvider = (props: Props) => {
 
     useEffectOnce(() => {
         if (!user) getUserInfo()
-        console.log(user) //-------
     })
 
     const signup = async (user: User) => {
         try {
             const res = await authService.signup(user)
             localStorage.setItem("user-token", res.data.token)
+            setUser(res.data)
         } catch (error) {
             console.error("Sign Up Error -->", error)
         }

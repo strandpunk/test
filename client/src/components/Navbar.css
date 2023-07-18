@@ -18,17 +18,25 @@ img {
 
 .navbar-navlink{
     color: black;
+    margin-right: 10px;
 }
 
 .active {
-    border-bottom: 1px solid black;
     color: black;
+    opacity: 0.5;
     cursor: default;
 }
 
-
-
 .navbar-linkWrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.navbar-user, .navbar-signout {
+    margin-right: 10px;
+}
+
+.navbar-signout {
+    cursor: pointer;
+    border-bottom: 1px solid black;
 }

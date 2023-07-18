@@ -1,11 +1,13 @@
 import React, { FormEventHandler, useState } from "react"
 import DataItem from "../components/dataItem"
+import { useAuth } from "../contexts/AuthContext"
 import { useData } from '../contexts/DataContext'
 import { Data } from "../services/dataService"
 import './Home.css'
 
 
 type Props = {}
+
 
 const initForm: Data = {
     content: ""
@@ -14,6 +16,8 @@ const initForm: Data = {
 const Home = (props: Props) => {
     const { datas, addData, updateData } = useData()
     const [form, setForm] = useState<Data>(initForm)
+
+    const { user } = useAuth()
 
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
@@ -30,12 +34,14 @@ const Home = (props: Props) => {
     }
 
     return (
-        <main className="home-main">
-            <section>
-                {datas?.map(d => <DataItem {...d} key={d._id} onClick={handleDataItemClick(d)} />)}
-            </section>
-            <div>Home</div>
-        </main>
+        <div className="home-wrapper">
+            <div className="home-main">
+                <section>
+                    {datas?.map(d => <DataItem {...d} key={d._id} onClick={handleDataItemClick(d)} />)}
+                </section>
+                <div>{user?.name}</div>
+            </div>
+        </div>
     )
 }
 

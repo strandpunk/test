@@ -12,7 +12,7 @@ import Layout from './templates/Layout';
 function App() {
   return (
     <BrowserRouter>
-      {/* <AuthContextProvider> */}
+      <AuthContextProvider>
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route
@@ -27,7 +27,7 @@ function App() {
             <Route path='signup' element={<SignUp />} />
           </Route>
         </Routes>
-      {/* </AuthContextProvider> */}
+      </AuthContextProvider>
     </BrowserRouter>
   );
 }

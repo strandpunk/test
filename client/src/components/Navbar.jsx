@@ -27,8 +27,10 @@ const Navbar = () => {
           </>
           :
           <>
-            <div className='navbar-user'>Hello{user?.name}</div>
-            <div className='navbar-signout' onClick={handleSignout}>signout</div>
+            <div className="navbar-linkWrapper">
+              <div className='navbar-user'>Hello:{user?.name}</div>
+              <div className='navbar-signout' onClick={handleSignout}>Sign out</div>
+            </div>
           </>
         }
       </nav >
