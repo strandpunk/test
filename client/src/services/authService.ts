@@ -13,7 +13,7 @@ const signup = async (user: User) => await api.post(`${prefix}/register`, user)
 
 const signin = async (user: Partial<User>) => await api.post(`${prefix}/login`, user)
 
-const getUserInfo = async () => await api.get(`${prefix}/info`)
+const getUserInfo = async () => await api.get(`${prefix}/`)
 
 const authService = {
     signup,
