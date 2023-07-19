@@ -7,7 +7,9 @@ import SignUp from './pages/signUp';
 import React from 'react'
 import './App.css'
 import Layout from './templates/Layout';
+import axios from 'axios';
 
+axios.defaults.withCredentials = true;
 
 function App() {
   return (

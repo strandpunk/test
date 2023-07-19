@@ -13,12 +13,15 @@ const signup = async (user: User) => await api.post(`${prefix}/register`, user)
 
 const signin = async (user: Partial<User>) => await api.post(`${prefix}/login`, user)
 
-const getUserInfo = async () => await api.get(`${prefix}/`)
+const getUserInfo = async () => await api.get(`${prefix}/info`)
+
+const getLoggedIn = async () => await api.get(`${prefix}/loggedIn`)
 
 const authService = {
     signup,
     signin,
-    getUserInfo
+    getUserInfo,
+    getLoggedIn
 }
 
 export default authService

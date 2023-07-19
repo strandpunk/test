@@ -25,7 +25,7 @@ const SignIn = (props: Props) => {
         e.preventDefault()
         try {
             await signin(form)
-            navigate('/')
+            navigate(`/`)
             navigate(0)
         } catch (error) {
             console.log("SignIn Error -->", error)
@@ -37,18 +37,14 @@ const SignIn = (props: Props) => {
         <div className='form_placer'>
             <div className='form-wrapper'>
                 <form onSubmit={handleSubmit} className="form">
-                    {/* <AppInput/> */}
-
-                    {/* <AppInput/> */}
-
                     <h1 style={{ textAlign: 'center' }}>Enter</h1>
+
                     <label>Email</label>
                     <input onChange={handleFormChange} value={email} name='email' type='text' placeholder='Enter your email....' />
 
-                    {/* <AppButton/> */}
-
                     <label>Password</label>
                     <input onChange={handleFormChange} value={password} name='password' type='password' placeholder='Enter your password...'></input>
+
                     <button className='registerbtn' type='submit'>ENTER</button>
                 </form>
             </div>

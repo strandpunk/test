@@ -4,12 +4,14 @@ import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css'
 
 const Navbar = () => {
-  const { user, signout } = useAuth()
+  const { user } = useAuth()
+  const {getLoggedIn} = useAuth()
+  console.log(getLoggedIn)
   const navigate = useNavigate()
 
 
   const handleSignout = () => {
-    signout()
+    getLoggedIn()
     navigate('/signin')
     navigate(0)
   }
@@ -18,7 +20,7 @@ const Navbar = () => {
     <header className='navbar-header'>
       <Link to={'/'}><img id='Logo' src="/1618916.svg" alt="Logo" className="cursor-pointer" /></Link>
       <nav className="flex justify-center items-center gap-5">
-        {!user ?
+        {!getLoggedIn ?
           <>
             <div className="navbar-linkWrapper">
               <NavLink className='navbar-navlink' to='/signin'>Sign in</NavLink>
@@ -28,7 +30,7 @@ const Navbar = () => {
           :
           <>
             <div className="navbar-linkWrapper">
-              <div className='navbar-user'>Hello:{user?.name}</div>
+              <div className='navbar-user'>User:{user?.name}</div>
               <div className='navbar-signout' onClick={handleSignout}>Sign out</div>
             </div>
           </>

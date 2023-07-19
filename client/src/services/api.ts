@@ -1,6 +1,8 @@
 import axios from 'axios'
+import Cookie from 'universal-cookie'
 
-const token = localStorage.getItem("user-token")
+const cookie = new Cookie()
+const token = cookie.get("user-token")
 
 const api = axios.create({
     baseURL: "http://localhost:4000/api/",
